@@ -15,5 +15,6 @@ methods set out below...
 # TWITTER - [Click Here][twitter] or search tiwtter for @Inside_4ndroid
 # EMAIL - inside4ndroid.techsup@gmail.com
 
+[twitter]: https://twitter.com/Inside_4ndroid
 [website]: http://i4pro.co.uk
 [repo]: http://i4arepo.comxa.com/irepo/
