@@ -54,7 +54,7 @@ def main():
 	add_link_dummy(icon, fanart)
 	addDirMain('[COLOR yellow][B]>> Sports IPTV[/B][/COLOR]',u_r_l,3,mediapath+'welcome.png')
 	addDirMain('[COLOR yellow][B]>> Wrestling[/B][/COLOR]',u_r_l,14,mediapath+'welcome.png')
-	add_link_info('[COLOR FF875f0e][B]>> Boxing/UFC - COMING SOON...[/B][/COLOR]',mediapath+'welcome.png', fanart)
+	addDirMain('[COLOR yellow][B]>> Latest UFC Shows[/B][/COLOR]',baseurlwwe+'/category/ufc/',15,mediapath+'welcome.png')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -76,14 +76,15 @@ def WWE_CAT(url):
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
 
 def WWE_PPV(url):
+	link = open_url(url)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]SPORTS ANGEL - TITLES [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'welcome.png', fanart)
 	add_link_dummy(icon, fanart)
-	link = open_url(url)
 	all_links = regex_get_all(link, '<li class="item-post">', '<span class="vertical-align">')
 	for a in all_links:
-		name = regex_from_to(a, 'title="', '"').replace("&amp;","&").replace('Watch WWE','').replace('Watch TNA','').replace('Watch ROH','').replace('Watch NJPW','')
+		name = regex_from_to(a, 'title="', '"').replace("&amp;","&").replace('Watch WWE','').replace('Watch TNA','').replace('Watch ROH','').replace('Watch NJPW','').replace('Watch UFC','').replace('Watch The','').replace('&#8211;','-')
 		url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
 		thumb = regex_from_to(a, 'src="', '"').replace("&amp;","&")
+		nextp = regex_from_to(a, '', '').replace("&amp;","&")
 		addDirMain('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name,url,16,thumb)
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
