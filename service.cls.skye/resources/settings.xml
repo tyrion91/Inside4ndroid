@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="SET TIME IN SECONDS">
+		<setting label="[COLOR yellow]SET THE TIME BETWEEN CLEANS IN SECONDS EG, 3600 = 1HOUR[/COLOR]" type="text"/>
+		<setting label=" " type="text"/> 
+		<setting label="Seconds" type="text" id="Seconds" default="3600"/>
+		<setting type="sep"/> 
+		<setting label=" " type="text"/> 
+		<setting label="[COLOR red]YOU MUST RESTART KODI FOR CHANGES TO TAKE EFFECT![/COLOR]" type="text"/>
+	</category>
+</settings>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.program.nxtwiz" name="NXT Wizard" version="1.0" provider-name="Inside 4ndroid">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+		<summary lang="en">NXT Wizard</summary>
+		<description lang="en">With the NXT Wizard you will be able to perform maintanance task, install builds and install skins for kodi krypton</description>
+		<disclaimer lang="en">This wizard is a modification of the fanriffic wizard and full props go to him for his work here.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>

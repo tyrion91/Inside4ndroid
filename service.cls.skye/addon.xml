@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.cls.skye"
+       name="Clutter Free"
+       version="3.0.0"
+       provider-name="Inside 4ndroid">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="repository.inside4ndroid" />
+  </requires>
+  <extension point="xbmc.service" library="clear.py" start="login" />
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">A service addon which periodically clears cache / thumbnails</summary>
+	<description>Inside 4ndroid Kodi Addons</description>
+  </extension>
+</addon>

@@ -1,0 +1,8 @@
+v3.0.0
++ Fixed dialog on every clearance.
+
+v2.0.0
++ Fixed some incorrect cache paths.
+
+v1.0.0
+Initial Release

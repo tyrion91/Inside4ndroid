@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.angeltv" name="[B][COLOR limegreen]SPORTS [/COLOR][COLOR pink]ANGEL [/COLOR][/B]" version="21.0" provider-name="Inside 4ndroid">
+    <requires>
+	<import addon="script.module.urlresolver" version="3.0.29"/>
+	<import addon="repository.inside4ndroid" />
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>Free SPORTS IPTV/WRESTLING/BOXING addon for the Kodi Platform. All content is freely available on the internet.</summary>
+        <description>This addon just makes it easier to access thefree online content in one place. I am in no way affiliated with kodi or its creators and all content provided is freely available on the web</description>
+    </extension>
+</addon>
