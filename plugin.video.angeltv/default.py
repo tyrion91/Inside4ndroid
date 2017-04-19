@@ -27,10 +27,13 @@ u_r_l = 'http://i4pro.co.uk/kodi/shadownet/'
 try:os.mkdir(datapath)
 except:pass
 online_xml = u_r_l+'xtrax.xml'
+online_other = u_r_l+'othersport.m3u'
+online_basics = u_r_l+'listsp.m3u'
 file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
 cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 net = net.Net()
 xml_regex = '<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumbnail>'
+m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
 s = requests.session()
 
 def make_request(url):
@@ -58,7 +61,7 @@ def main():
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
-
+	
 def WWE_CAT(url):
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]SPORTS ANGEL - CATEGORIES [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'welcome.png', fanart)
 	add_link_dummy(icon, fanart)
@@ -174,6 +177,7 @@ def SPORTS_ALL():
 	for name,url,thumb in match:
 		if 'BT Sport' in name:
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 200, thumb, fanart, '')
+	
 			
 	link = open_url('http://shadow-net.org/search.php?search_query=sky')
 	all_links = regex_get_all(link, '<div class="ProductImage">', '</div>')
@@ -247,6 +251,23 @@ def SPORTS_ALL():
 		if 'Pac 12 Washington' in name:
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 200, iconlogo, fanart, '')
 	
+	opener = urllib.FancyURLopener({})
+	response = opener.open(online_other)
+	online_m3u = response.read()
+	response.close()	
+	content = online_m3u
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+	opener = urllib.FancyURLopener({})
+	response = opener.open(online_basics)
+	online_m3u = response.read()
+	response.close()	
+	content = online_m3u
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+		
 def SPORTS_OTHER():
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]SPORTS ANGEL - OTHER SPORTS [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'welcome.png', fanart)
 	add_link_dummy(icon, fanart)
@@ -286,6 +307,14 @@ def SPORTS_OTHER():
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 200, iconlogo, fanart, '')
 		if 'WWE Network' in name:
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 200, iconlogo, fanart, '')
+	opener = urllib.FancyURLopener({})
+	response = opener.open(online_other)
+	online_m3u = response.read()
+	response.close()	
+	content = online_m3u
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -354,6 +383,15 @@ def SPORTS_TSN():
 		iconlogo = regex_from_to(a, 'src="', '"').replace("&amp;","&")
 		if 'TSN' in name:
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 200, iconlogo, fanart, '')
+	opener = urllib.FancyURLopener({})
+	response = opener.open(online_basics)
+	online_m3u = response.read()
+	response.close()	
+	content = online_m3u
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		if 'TSN' in name:
+			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -396,6 +434,15 @@ def SPORTS_SKY():
 	for name,url,thumb in match:
 		if 'Sky Sport' in name:
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 200, thumb, fanart, '')
+	opener = urllib.FancyURLopener({})
+	response = opener.open(online_basics)
+	online_m3u = response.read()
+	response.close()	
+	content = online_m3u
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		if 'Sky Sports' in name:
+			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -418,6 +465,15 @@ def SPORTS_BT():
 	for name,url,thumb in match:
 		if 'BT Sport' in name:
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 200, thumb, fanart, '')
+	opener = urllib.FancyURLopener({})
+	response = opener.open(online_basics)
+	online_m3u = response.read()
+	response.close()	
+	content = online_m3u
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		if 'BT Sport' in name:
+			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -454,6 +510,12 @@ def PLAYLINK(name,url,iconimage):
 		liz.setProperty("IsPlayable","true")
 		liz.setPath(str(url))
 		xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+
+def playmediaurl(url):
+	media_url = url
+	item = xbmcgui.ListItem(name, path = media_url)
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+	return
 
 def PLAYHOSTED(url):
 	try:
@@ -649,5 +711,8 @@ elif mode == 200:
 
 elif mode == 300:
 	HOSTS(url)
+
+elif mode == 400:
+	playmediaurl(url)
 	
 xbmcplugin.endOfDirectory(plugin_handle)

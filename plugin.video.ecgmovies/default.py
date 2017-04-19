@@ -48,15 +48,13 @@ def GETMOVIES(url,name):
 			url=url.replace("&amp;","&")
 		setView('movies', 'MAIN')
 
-def SEARCH_INDEX(url,name):
-		link = open_url(url)
-		match=re.compile('<div class="result-item">.+?<a href="(.+?)">.+?<img src=".+?" alt="(.+?)"',re.DOTALL).findall(link)
-		items = len(match)
-		for url,name in match:
+def SEARCH_INDEX(url):
+		term = open_url(url)
+		gotem=re.compile('<div class="result-item">.+?<a href="(.+?)">.+?<img src=".+?" alt="(.+?)"',re.DOTALL).findall(term)
+		items = len(gotem)
+		for url,name in gotem:
 			name2 = cleanHex(name)
-			if '/tvseries/' not in url:
-				addDir(name2,'N/A',url,100,'',len(match))
-			else:pass
+			addDir(name2,'N/A',url,100,'',len(gotem))
 		setView('movies', 'MAIN')
 	
 def SEARCH():
@@ -67,8 +65,7 @@ def SEARCH():
 		search_txt = keyboard.getText().replace(' ','+')
 	if len(search_txt)>1:
 		url = baseurl_1+'/?s='+search_txt
-		link = open_url(url)
-		SEARCH_INDEX(url,name)
+		SEARCH_INDEX(url)
 
 def YEARS():
 	search_txt =''
