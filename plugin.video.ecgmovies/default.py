@@ -33,29 +33,37 @@ def CATEGORIES():
 	addDir2('[COLOR yellow][B]Settings[/B][/COLOR]',baseurl_1,5,mediapath+'settings.png','Here you can customize the look of the addon and also disable the artwork/descriptions which in turn loads the sections faster.',fanart)
 	addDir2('[COLOR yellow][B]Tools[/B][/COLOR]',baseurl_1,6,mediapath+'tools.png','Here you can clear your cache, packages and even empty your thumbnails directories',fanart)
 	addDir2('[COLOR yellow][B]Support[/B][/COLOR]',baseurl_1,1003,mediapath+'support.png','Here there is info on how to contact me to report errors/films not playing etc...',fanart)
-	setView('movies', 'MAIN')
+	if metaset=='true':
+		setView('movies', 'MAIN')
+	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def GETMOVIES(url,name):
 		link = open_url(url)
-		match=re.compile('<article id=.+?class="item movies".+?<a href="(.+?)"><img src=".+?" alt="(.+?)">.+?<span class="quality">(.+?)</span>',re.DOTALL).findall(link)
+		match=re.compile('<article id=.+?class="item movies".+?<a href="(.+?)"><img src=".+?" alt="(.+?)"',re.DOTALL).findall(link)
 		items = len(match)
-		for url,name,quality in match:
+		for url,name in match:
 			name2 = cleanHex(name)
-			addDir(name2,quality,url,100,'',len(match))
+			addDir(name2,url,100,'',len(match))
 		np = re.compile('class=.+?current.+?<a href=\'(.+?)\'',re.DOTALL).findall(link)
 		for url in np:
-			addDir2('[B][COLOR gold]Next Page  >>>[/COLOR][/B]',url,1,mediapath+'nextp.png','Click this to go on to the next page. To return to this page just press back or click the "..." at the top of the page.',fanart)
+			addDir2('[B][COLOR gold]Next Page  >>>[/COLOR][/B]',url,1,mediapath+'nextp.png','',fanart)
 			url=url.replace("&amp;","&")
-		setView('movies', 'MAIN')
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
-def SEARCH_INDEX(url):
-		term = open_url(url)
-		gotem=re.compile('<div class="result-item">.+?<a href="(.+?)">.+?<img src=".+?" alt="(.+?)"',re.DOTALL).findall(term)
-		items = len(gotem)
-		for url,name in gotem:
+def SEARCH_INDEX(url,name):
+		link = open_url(url)
+		match=re.compile('<div class="result-item">.+?<a href="(.+?)">.+?<img src=".+?" alt="(.+?)"',re.DOTALL).findall(link)
+		items = len(match)
+		for url,name in match:
 			name2 = cleanHex(name)
-			addDir(name2,'N/A',url,100,'',len(gotem))
-		setView('movies', 'MAIN')
+			if '/tvseries/' not in url:
+				addDir(name2,url,100,'',len(match))
+			else:pass
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 	
 def SEARCH():
 	search_txt =''
@@ -65,7 +73,8 @@ def SEARCH():
 		search_txt = keyboard.getText().replace(' ','+')
 	if len(search_txt)>1:
 		url = baseurl_1+'/?s='+search_txt
-		SEARCH_INDEX(url)
+		link = open_url(url)
+		SEARCH_INDEX(url,name)
 
 def YEARS():
 	search_txt =''
@@ -89,7 +98,9 @@ def GENRES(url):
 		name2 = cleanHex(name)
 		addDir2('[B][COLOR yellow]%s[/COLOR][/B]' %name2,url,1,mediapath+'genres.png','',fanart)
 				#addDir2(name,url,mode,iconimage,description,fanart)
-	setView('movies', 'MAIN')
+	if metaset=='true':
+		setView('movies', 'MAIN')
+	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def PLAYLINK(name,url,iconimage):
 	OPEN = open_url(url)
@@ -109,7 +120,9 @@ def TOOLS():
 	addDir2('[COLOR yellow][B]Clear Cache[/B][/COLOR]',baseurl_1,1000,mediapath+'cache.png','',fanart)
 	addDir2('[COLOR yellow][B]Clear Packages[/B][/COLOR]',baseurl_1,1001,mediapath+'packages.png','',fanart)
 	addDir2('[COLOR yellow][B]Clear Thumbnails[/B][/COLOR]',baseurl_1,1002,mediapath+'thumbs.png','',fanart)
-	setView('movies', 'MAIN')
+	if metaset=='true':
+		setView('movies', 'MAIN')
+	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def SUPPORT():
 	xbmcgui.Dialog().ok('[B][COLOR limegreen]ECG [/COLOR][COLOR gold]MOVIES [/COLOR][/B]','Thanks for using ECG MOVIES. If you require support or want to report non working films or errors please contact me via the following ways >>> \nEMAIL: inside4ndroid.techsup@gmail.com \nTWITTER: @Inside_4ndroid \nThank You')
@@ -137,33 +150,43 @@ def clearCache():
 	yes = xbmcgui.Dialog().yesno('[B][COLOR limegreen]ECG [/COLOR][COLOR gold]MOVIES [/COLOR][/B]','Are you sure you want to delete all cache files?',yeslabel='Yes',nolabel='No')
 	if not yes: 
 		add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart)
-		setView('movies', 'MAIN')
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 		return
 	import clear
 	clear.CleanUP()
 	xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]ECG MOVIES[/B][/COLOR],'Your Cache Is Now Empty',5000,"+icon+")")
 	add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart); return
-	setView('movies', 'MAIN')
+	if metaset=='true':
+		setView('movies', 'MAIN')
+	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def clearPacks():
 	metaset = selfAddon.getSetting('enable_meta')
 	yes = xbmcgui.Dialog().yesno('[B][COLOR limegreen]ECG [/COLOR][COLOR gold]MOVIES [/COLOR][/B]','Are you sure you want to delete Package files?',yeslabel='Yes',nolabel='No')
 	if not yes: 
 		add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart)
-		setView('movies', 'MAIN')
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 		return
 	import clear
 	clear.Clear_P()
 	xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]ECG MOVIES[/B][/COLOR],'Your Packages Is Now Empty',5000,"+icon+")")
 	add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart); return
-	setView('movies', 'MAIN')
+	if metaset=='true':
+		setView('movies', 'MAIN')
+	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 	
 def ClearThumbs():
 	metaset = selfAddon.getSetting('enable_meta')
 	yes = xbmcgui.Dialog().yesno('[COLOR gold][B]ECG MOVIES[/B][/COLOR]','Clearing the Thumbs will require you to force close kodi. After you have cleared the Thumbs FOLLOW AND READ the on screen instructions. \nDO YOU WANT TO CONTINUE?',yeslabel='Yes',nolabel='No')
 	if not yes: 
 		add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart)
-		setView('movies', 'MAIN')
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 		return
 	shutil.rmtree(THDATA)
 	killxbmc()
@@ -186,7 +209,9 @@ def killxbmc():
     choice = xbmcgui.Dialog().yesno('[B][COLOR limegreen]ECG [/COLOR][COLOR gold]MOVIES [/COLOR][/B]', 'You are about to close Kodi', 'Would you like to continue?', nolabel='No, Cancel',yeslabel='Yes, Close')
     if choice == 0:
         add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart)
-        setView('movies', 'MAIN')
+        if metaset=='true':
+            setView('movies', 'MAIN')
+        else: xbmc.executebuiltin('Container.SetViewMode(50)')
         return
     elif choice == 1:
         pass
@@ -252,6 +277,7 @@ def killxbmc():
         dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit via the menu.","iOS detected.  Press and hold both the Sleep/Wake and Home button for at least 10 seconds, until you see the Apple logo.")    
 
 def addDir2(name,url,mode,iconimage,description,fanart):
+        xbmc.executebuiltin('Container.SetViewMode(50)')
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
@@ -260,7 +286,7 @@ def addDir2(name,url,mode,iconimage,description,fanart):
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
 
-def addDir(name,quality,url,mode,iconimage,itemcount,isFolder=False):
+def addDir(name,url,mode,iconimage,itemcount,isFolder=False):
         if metaset=='true':
             splitName=name.partition('(')
             simplename=""
@@ -272,11 +298,10 @@ def addDir(name,quality,url,mode,iconimage,itemcount,isFolder=False):
                 simpleyear=simpleyear[0]
             mg = metahandlers.MetaData()
             meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
-            u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&quality="+urllib.quote_plus(quality)+"&iconimage="+urllib.quote_plus(iconimage)
+            u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)
             ok=True
             liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=iconimage)
-            liz.setInfo( type="Video", infoLabels=meta)
-            liz.setInfo( type="Video", infoLabels={'title': '[B][COLOR blue]%s[/COLOR][/B]' %name+'[I][COLOR gold] (%s)[/COLOR][/I]' %quality})
+            liz.setInfo( type="Video", infoLabels= meta )
             contextMenuItems = []
             contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))
             liz.addContextMenuItems(contextMenuItems, replaceItems=True)
@@ -290,9 +315,9 @@ def addDir(name,quality,url,mode,iconimage,itemcount,isFolder=False):
                 ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
             return ok
         else:
-            u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&quality="+urllib.quote_plus(quality)+"&iconimage="+urllib.quote_plus(iconimage)
+            u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)
             ok=True
-            liz=xbmcgui.ListItem(name, quality, iconImage=icon, thumbnailImage=iconimage)
+            liz=xbmcgui.ListItem(name, iconImage=icon, thumbnailImage=iconimage)
             liz.setInfo( type="Video", infoLabels={"Title": name,"Plot":''})
             liz.setProperty('fanart_image', fanart)
             if mode==100:
@@ -387,10 +412,14 @@ def openSettings(query=None, id=addon_id):
 		execute('SetFocus(%i)' % (int(c) + 100))
 		execute('SetFocus(%i)' % (int(f) + 200))
 		add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart)
-		setView('movies', 'MAIN')
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 	except:
 		add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart)
-		setView('movies', 'MAIN')
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 		return
 
 def setView(content, viewType):
@@ -432,14 +461,12 @@ def setView(content, viewType):
     xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
     xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_MPAA_RATING )
 
-params=get_params(); url=None; name=None; quality=None; mode=None; site=None; iconimage=None; query=None
+params=get_params(); url=None; name=None; mode=None; site=None; iconimage=None; query=None
 try: site=urllib.unquote_plus(params["site"])
 except: pass
 try: url=urllib.unquote_plus(params["url"])
 except: pass
 try: name=urllib.unquote_plus(params["name"])
-except: pass
-try: quality=urllib.unquote_plus(params["quality"])
 except: pass
 try: mode=int(params["mode"])
 except: pass
@@ -448,7 +475,7 @@ except: pass
 try: query=urllib.unquote_plus(params["query"])
 except: pass
 
-print "Site: "+str(site); print "Mode: "+str(mode); print "URL: "+str(url); print "Name: "+str(name); print "Quality: "+str(quality)
+print "Site: "+str(site); print "Mode: "+str(mode); print "URL: "+str(url); print "Name: "+str(name)
 print params
 
 if mode==None or url==None or len(url)<1: CATEGORIES()

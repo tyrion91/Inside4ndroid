@@ -37,6 +37,8 @@ NETRC_FILES = ('.netrc', '_netrc')
 
 DEFAULT_CA_BUNDLE_PATH = certs.where()
 
+one = ('gamma')
+
 
 def dict_to_sequence(d):
     """Returns an internal sequence dictionary update."""

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.ecgmovies" name="[B][COLOR limegreen]ECG [/COLOR][COLOR gold]MOVIES [/COLOR][/B]" version="24.0" provider-name="Inside 4ndroid">
+<addon id="plugin.video.ecgmovies" name="[B][COLOR limegreen]ECG [/COLOR][COLOR gold]MOVIES [/COLOR][/B]" version="26.0" provider-name="Inside 4ndroid">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -9,14 +9,13 @@
     <import addon="script.common.plugin.cache" version="2.5.2"/>
     <import addon="script.module.metahandler" version="2.5.1"/>
     <import addon="script.module.addon.common" version="2.0.0"/>
-	<import addon="repository.inside4ndroid" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">One Click Movies</summary>
-    <description lang="en">Inside 4ndroid Kodi Addons</description>
+    <summary lang="en"></summary>
+    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>

@@ -3,18 +3,5 @@
 	<setting id="enable_meta" type="bool" label="Enable Metadata" default="true"/>
 	<setting id="auto-view" type="bool" label="Enable Auto View" default="true" enable="!eq(-1,false)"/>
 	<setting id="MAIN" type="labelenum" label="Movies View" values="Info|Info2|Info3|Fanart|Big list|Poster Wrap" default="Info3" enable="!eq(-1,false)+!eq(-2,false)+!eq(-3,false)"/>
-	<setting type="lsep" label="I am not sure the view modes are working correctly"/>
-	<setting type="lsep" label="If you find that they are not please dont hesitate"/>
-	<setting type="lsep" label="to let me knwo TWITTER - @Inside_4ndroid"/>
-	<setting type="lsep" label="If it is a big issue for everyone i will sort it"/>
-	<setting type="lsep" label="out but at the moment their has not been a single"/>
-	<setting type="lsep" label="complaint so i therefore cant be arsed lol.."/>
 </category>
-	<category label="Update">
-		<setting type="lsep" label="When You Click Check For Updates It will Appear"/>
-		<setting type="lsep" label=" As If Nothing Happened If Their Is Any Available"/>
-		<setting type="lsep" label="Updates You Will See The Appropriate Notifications"/>
-		<setting type="lsep" label=" "/>
-		<setting label="  [COLOR gold]Click Here To Check For Updates For All Your Addons&Repos[/COLOR]" type="action" action="UpdateAddonRepos"/>
-	</category>
 </settings>

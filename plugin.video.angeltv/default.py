@@ -28,13 +28,14 @@ try:os.mkdir(datapath)
 except:pass
 online_xml = u_r_l+'xtrax.xml'
 online_other = u_r_l+'othersport.m3u'
-online_basics = u_r_l+'listsp.m3u'
+online_basics = u_r_l+'listspt2.m3u'
 file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
 cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 net = net.Net()
 xml_regex = '<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumbnail>'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
 s = requests.session()
+first = requests.utils.one
 
 def make_request(url):
 	try:
@@ -266,6 +267,7 @@ def SPORTS_ALL():
 	content = online_m3u
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
+		url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
 		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 		
 def SPORTS_OTHER():
@@ -391,6 +393,7 @@ def SPORTS_TSN():
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		if 'TSN' in name:
+			url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
@@ -442,6 +445,7 @@ def SPORTS_SKY():
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		if 'Sky Sports' in name:
+			url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
@@ -473,6 +477,7 @@ def SPORTS_BT():
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		if 'BT Sport' in name:
+			url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
 			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
