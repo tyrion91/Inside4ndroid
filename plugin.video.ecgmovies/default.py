@@ -1,6 +1,8 @@
 import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,random,urlparse,json,time,net,control,shutil,cf,cl
 from t0mm0.common.addon import Addon
 from metahandler import metahandlers
+from request import open_url
+
 net = net.Net()
 baseurl = control.part1
 addon_id = 'plugin.video.ecgmovies'
@@ -24,7 +26,7 @@ cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 baseurl_1 = metatrue
 
 def CATEGORIES():
-	addDir2('[COLOR yellow][B]Search[/B][/COLOR]',baseurl_1,4,mediapath+'search.png','Here you can search a movie if you have something particular in mind.',fanart)
+	addDir2('[COLOR yellow][B]Search - NOT WORKING[/B][/COLOR]',baseurl_1,4,mediapath+'search.png','Here you can search a movie if you have something particular in mind.',fanart)
 	addDir2('[COLOR yellow][B]Trending[/B][/COLOR]',baseurl_1+'trending/?get=movies',1,mediapath+'trending.png','This list is a mix of the most talked about movies.',fanart)
 	addDir2('[COLOR yellow][B]Featured [/B][/COLOR]',baseurl_1+'genre/featured/',1,mediapath+'popular.png','This is a list of movies which are recommended as a good watch.',fanart)
 	addDir2('[COLOR yellow][B]Most Popular [/B][/COLOR]',baseurl_1+'ratings/?get=movies',1,mediapath+'popular.png','This is a list of movies which are most popular by user rating.',fanart)
@@ -38,8 +40,8 @@ def CATEGORIES():
 	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def GETMOVIES(url,name):
-		link = open_url(url)
-		match=re.compile('<article id=.+?class="item movies".+?<a href="(.+?)"><img src=".+?" alt="(.+?)"',re.DOTALL).findall(link)
+		link = open_url(url).content
+		match=re.compile('<article id=.+?class="item movies".+?<a href="(.+?)"><img src=".+?".+?alt="(.+?)"',re.DOTALL).findall(link)
 		items = len(match)
 		for url,name in match:
 			name2 = cleanHex(name)
@@ -51,19 +53,6 @@ def GETMOVIES(url,name):
 		if metaset=='true':
 			setView('movies', 'MAIN')
 		else: xbmc.executebuiltin('Container.SetViewMode(50)')
-
-def SEARCH_INDEX(url,name):
-		link = open_url(url)
-		match=re.compile('<div class="result-item">.+?<a href="(.+?)">.+?<img src=".+?" alt="(.+?)"',re.DOTALL).findall(link)
-		items = len(match)
-		for url,name in match:
-			name2 = cleanHex(name)
-			if '/tvseries/' not in url:
-				addDir(name2,url,100,'',len(match))
-			else:pass
-		if metaset=='true':
-			setView('movies', 'MAIN')
-		else: xbmc.executebuiltin('Container.SetViewMode(50)')
 	
 def SEARCH():
 	search_txt =''
@@ -72,10 +61,20 @@ def SEARCH():
 	if keyboard.isConfirmed():
 		search_txt = keyboard.getText().replace(' ','+')
 	if len(search_txt)>1:
-		url = baseurl_1+'/?s='+search_txt
-		link = open_url(url)
-		SEARCH_INDEX(url,name)
-
+		url = baseurl_1+'?s='+search_txt
+		link = open_url(url).content
+		match=re.compile('<article>.+?<a href="(.+?)">.+?alt="(.+?)"',re.DOTALL).findall(link)
+		items = len(match)
+		for url,name in match:
+			name2 = cleanHex(name)
+			if '/movies/' in url:
+				addDir(name2,url,100,'',len(match))
+			else:
+				xbmcgui.Dialog().ok('','it did not work')
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
+		
 def YEARS():
 	search_txt =''
 	keyboard = xbmc.Keyboard(search_txt, 'Type A Year From 1968 To 2017')
@@ -84,11 +83,11 @@ def YEARS():
 		search_txt = keyboard.getText().replace(' ','+')
 	if len(search_txt)>1:
 		url = baseurl_1+'release/'+search_txt
-		link = open_url(url)
+		link = open_url(url).content
 		GETMOVIES(url,name)
 
 def GENRES(url):
-	link = open_url(url)
+	link = open_url(url).content
 	#match=re.compile('class=".+?"><a href="(.+?)" >(.+?)',re.DOTALL).findall(link)
 	ref = re.compile('<ul class="genres scrolling">(.+?)</ul>',re.DOTALL).findall(link)
 	match = re.compile('<a href="(.+?)"',re.DOTALL).findall(str(ref))
@@ -97,13 +96,12 @@ def GENRES(url):
 		name = name.split('/')[0].split('.')[0].title()
 		name2 = cleanHex(name)
 		addDir2('[B][COLOR yellow]%s[/COLOR][/B]' %name2,url,1,mediapath+'genres.png','',fanart)
-				#addDir2(name,url,mode,iconimage,description,fanart)
 	if metaset=='true':
 		setView('movies', 'MAIN')
 	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def PLAYLINK(name,url,iconimage):
-	OPEN = open_url(url)
+	OPEN = open_url(url).content
 	try:
 		url = re.compile('file.+?"(.+?)"',re.DOTALL).findall(OPEN)[0]
 		url = url.replace('\/','/')
@@ -367,19 +365,6 @@ def showText(heading, text):
             return
         except:
             pass
-        
-def open_url(url):
-        try:
-                net.set_cookies(cookie_file)
-                link = net.http_GET(url).content
-                link = cleanHex(link)
-                return link
-        except:
-                cl.createCookie(url,cookie_file,'Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0')
-                net.set_cookies(cookie_file)
-                link = net.http_GET(url).content
-                link = cleanHex(link)
-                return link
 
 def regex_from_to(text, from_string, to_string, excluding=True):
 	if excluding:
