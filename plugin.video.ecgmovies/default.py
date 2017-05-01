@@ -26,7 +26,7 @@ cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 baseurl_1 = metatrue
 
 def CATEGORIES():
-	addDir2('[COLOR yellow][B]Search - NOT WORKING[/B][/COLOR]',baseurl_1,4,mediapath+'search.png','Here you can search a movie if you have something particular in mind.',fanart)
+	addDir2('[COLOR yellow][B]Search[/B][/COLOR]',baseurl_1,4,mediapath+'search.png','Here you can search a movie if you have something particular in mind.',fanart)
 	addDir2('[COLOR yellow][B]Trending[/B][/COLOR]',baseurl_1+'trending/?get=movies',1,mediapath+'trending.png','This list is a mix of the most talked about movies.',fanart)
 	addDir2('[COLOR yellow][B]Featured [/B][/COLOR]',baseurl_1+'genre/featured/',1,mediapath+'popular.png','This is a list of movies which are recommended as a good watch.',fanart)
 	addDir2('[COLOR yellow][B]Most Popular [/B][/COLOR]',baseurl_1+'ratings/?get=movies',1,mediapath+'popular.png','This is a list of movies which are most popular by user rating.',fanart)
@@ -53,24 +53,39 @@ def GETMOVIES(url,name):
 		if metaset=='true':
 			setView('movies', 'MAIN')
 		else: xbmc.executebuiltin('Container.SetViewMode(50)')
-	
-def SEARCH():
-	search_txt =''
-	keyboard = xbmc.Keyboard(search_txt, 'What Would You Like To Watch?')
-	keyboard.doModal()
-	if keyboard.isConfirmed():
-		search_txt = keyboard.getText().replace(' ','+')
-	if len(search_txt)>1:
-		url = baseurl_1+'?s='+search_txt
+
+def SEARCH_INDEX(url):
 		link = open_url(url).content
-		match=re.compile('<article>.+?<a href="(.+?)">.+?alt="(.+?)"',re.DOTALL).findall(link)
+		match=re.compile('<div class="result-item">.+?<a href="(.+?)">.+?<img src=".+?" alt="(.+?)"',re.DOTALL).findall(link)
 		items = len(match)
 		for url,name in match:
 			name2 = cleanHex(name)
-			if '/movies/' in url:
+			if '/tvseries/' not in url:
 				addDir(name2,url,100,'',len(match))
+			else:pass
+		if metaset=='true':
+			setView('movies', 'MAIN')
+		else: xbmc.executebuiltin('Container.SetViewMode(50)')
+
+def SEARCH(content, query):
+	try:
+		keyb = xbmc.Keyboard('', 'Search')
+		keyb.doModal()
+		if keyb.isConfirmed():
+			search_txt = keyb.getText().replace(' ','+')
+		if len(search_txt)>1:
+			url = baseurl_1+'/search/%s' %search_txt
+			SEARCH_INDEX(url)
+		else:
+			search = ('%20')
+			if search == '':
+				xbmcgui.Dialog().ok('Something Went Wrong','ABORTING')
+				return
 			else:
-				xbmcgui.Dialog().ok('','it did not work')
+				pass
+	except:
+		xbmcgui.Dialog().ok('Something Went Wrong','ABORTING')
+		add_link_info('[B][COLOR limegreen]** [COLOR gold]<< PRESS BACK[/COLOR] **[/COLOR][/B]', icon, fanart)
 		if metaset=='true':
 			setView('movies', 'MAIN')
 		else: xbmc.executebuiltin('Container.SetViewMode(50)')
@@ -446,7 +461,7 @@ def setView(content, viewType):
     xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
     xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_MPAA_RATING )
 
-params=get_params(); url=None; name=None; mode=None; site=None; iconimage=None; query=None
+params=get_params(); url=None; name=None; mode=None; site=None; iconimage=None; query=None; content=None
 try: site=urllib.unquote_plus(params["site"])
 except: pass
 try: url=urllib.unquote_plus(params["url"])
@@ -459,6 +474,8 @@ try: iconimage=urllib.unquote_plus(params["iconimage"])
 except: pass
 try: query=urllib.unquote_plus(params["query"])
 except: pass
+try: query=urllib.unquote_plus(params["content"])
+except: pass
 
 print "Site: "+str(site); print "Mode: "+str(mode); print "URL: "+str(url); print "Name: "+str(name)
 print params
@@ -467,7 +484,7 @@ if mode==None or url==None or len(url)<1: CATEGORIES()
 elif mode==1: GETMOVIES(url,name)
 elif mode==2: GENRES(url)
 elif mode==3: YEARS()
-elif mode==4: SEARCH()
+elif mode==4: SEARCH(content, query)
 elif mode==5: openSettings(query)
 elif mode==6: TOOLS()
 elif mode==100: PLAYLINK(name,url,iconimage)

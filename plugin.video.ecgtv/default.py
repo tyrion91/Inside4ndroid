@@ -56,65 +56,62 @@ def main():
 def l1ll11_opy_(name, url, l11ll_opy_):
 	name = re.sub(l1ll1l_opy_ (u"ࠬࡢࡳࠬࠩࠏ"), l1ll1l_opy_ (u"࠭ࠠࠨࠐ"), name).strip()
 	url = url.replace(l1ll1l_opy_ (u"ࠧࠣࠩࠑ"), l1ll1l_opy_ (u"ࠨࠢࠪࠒ")).replace(l1ll1l_opy_ (u"ࠩࠩࡥࡲࡶ࠻ࠨࠓ"), l1ll1l_opy_ (u"ࠪࠪࠬࠔ")).replace(l1ll1l_opy_ (u"ࠫࠫࡧ࡭ࡱ࠽ࠪࠕ"), l1ll1l_opy_ (u"ࠬࠬࠧࠖ")).strip()
-	url = url
-	if l1ll1l_opy_ (u"࠭ࡌࡆࡇࡆࡌࡊࡘࠧࠗ") in url:
-		l1ll1l1_opy_(l1ll1l_opy_ (u"ࠧ࡜ࡋࡠ࡟ࡇࡣ࡛ࡄࡑࡏࡓࡗࠦࡢ࡭ࡷࡨࡡࠥࠫࡳࠡ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞࠳ࡇࡣ࡛࠰ࡋࡠࠫ࠘") %name, url, 1, l111l1_opy_, l11l1_opy_)
+	l1ll1l1_opy_(l1ll1l_opy_ (u"࡛࠭ࡊ࡟࡞ࡆࡢࡡࡃࡐࡎࡒࡖࠥࡨ࡬ࡶࡧࡠࠤࠪࡹࠠ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢࡡ࠯ࡊ࡟ࠪࠗ") %name, url, 1, l111l1_opy_, l11l1_opy_)
 def l1lll11_opy_(url):
-	url = url.replace(l1ll1l_opy_ (u"ࠨࡈࡘࡇࡐ࠵ࡏࡇࡈ࠲࡝ࡔ࡛࠯ࡍࡇࡈࡇࡍࡋࡒࠨ࠙"),l1ll1l_opy_ (u"ࠩ࡫ࡨࡱ࡯ࡶࡦࡶࡹ࠲ࡩ࡫࠺࠹࠲࠳࠴࠴ࡲࡩࡷࡧ࠲ࡘࡴࡳࡡࡴࡱ࠶࠳࡙ࡵ࡭ࡢࡵࡲ࠷ࠬࠚ"))
 	l1ll11l_opy_ = url
-	item = xbmcgui.ListItem(name, path = l1ll1l_opy_ (u"ࠪࡴࡱࡻࡧࡪࡰ࠽࠳࠴ࡶ࡬ࡶࡩ࡬ࡲ࠳ࡼࡩࡥࡧࡲ࠲࡫࠺࡭ࡕࡧࡶࡸࡪࡸ࠯ࡀࡵࡷࡶࡪࡧ࡭ࡵࡻࡳࡩࡂ࡚ࡓࡅࡑ࡚ࡒࡑࡕࡁࡅࡇࡕࠪࡳࡧ࡭ࡦ࠿࡞ࡆࡢࡡࡃࡐࡎࡒࡖࠥࡲࡩ࡮ࡧࡪࡶࡪ࡫࡮࡞ࡇࡆࡋ࡚ࠥࡖ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢࠬࡵࡳ࡮ࡀࠫࠛ") +l1ll11l_opy_)
+	item = xbmcgui.ListItem(name, path = l1ll1l_opy_ (u"ࠧࡱ࡮ࡸ࡫࡮ࡴ࠺࠰࠱ࡳࡰࡺ࡭ࡩ࡯࠰ࡹ࡭ࡩ࡫࡯࠯ࡨ࠷ࡱ࡙࡫ࡳࡵࡧࡵ࠳ࡄࡹࡴࡳࡧࡤࡱࡹࡿࡰࡦ࠿ࡗࡗࡉࡕࡗࡏࡎࡒࡅࡉࡋࡒࠧࡰࡤࡱࡪࡃ࡛ࡃ࡟࡞ࡇࡔࡒࡏࡓࠢ࡯࡭ࡲ࡫ࡧࡳࡧࡨࡲࡢࡋࡃࡈࠢࡗ࡚ࡠ࠵ࡃࡐࡎࡒࡖࡢࡡ࠯ࡃ࡟ࠩࡹࡷࡲ࠽ࠨ࠘") +l1ll11l_opy_)
 	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 	return
-def l1ll_opy_(query=None, id=l1ll1l_opy_ (u"ࠫࡵࡲࡵࡨ࡫ࡱ࠲ࡻ࡯ࡤࡦࡱ࠱ࡩࡨ࡭ࡴࡷࠩࠜ")):
-	xbmcgui.Dialog().ok(l1ll1l_opy_ (u"ࠬࡡࡂ࡞࡝ࡆࡓࡑࡕࡒࠡ࡮࡬ࡱࡪ࡭ࡲࡦࡧࡱࡡࡊࡉࡇࠡ࡝࠲ࡇࡔࡒࡏࡓ࡟࡞ࡇࡔࡒࡏࡓࠢࡪࡳࡱࡪ࡝ࡕࡘࠣ࡟࠴ࡉࡏࡍࡑࡕࡡࡠ࠵ࡂ࡞ࠩࠝ"),l1ll1l_opy_ (u"࠭ࡔࡩࡧࠣࡔࡦࡹࡳࡸࡱࡵࡨࠥ࡯ࡳࠡ࡫ࡱࡧࡴࡸࡲࡦࡥࡷࠤࡴࡸࠠࡺࡱࡸࠤ࡭ࡧࡶࡦࠢࡱࡳࡹࠦࡧࡰࡶࠣࡽࡴࡻࡲࠡࡲࡤࡷࡸࡽ࡯ࡳࡦࠣࡽࡪࡺࠠࡑ࡮ࡨࡥࡸ࡫ࠠࡧࡱ࡯ࡰࡴࡽࠠࡵࡪࡨࠤ࡮ࡴࡳࡵࡴࡸࡧࡹ࡯࡯࡯ࡵࠣ࡭ࡳࠦࡴࡩࡧࠣࡷࡪࡺࡴࡪࡰࡪࡷࠥࡽࡩ࡯ࡦࡲࡻࠥࡺ࡯ࠡࡩࡤ࡭ࡳࠦࡡࡤࡥࡨࡷࡸࠦࡴࡰࠢࡷ࡬࡮ࡹࠠࡨࡴࡨࡥࡹࠦࡦࡳࡧࡨࠤࡦࡪࡤࡰࡰ࠱ࠫࠞ"))
-	l1111l_opy_(l1ll1l_opy_ (u"ࠧࡂࡦࡧࡳࡳ࠴ࡏࡱࡧࡱࡗࡪࡺࡴࡪࡰࡪࡷ࠭ࠫࡳࠪࠩࠟ") % id)
+def l1ll_opy_(query=None, id=l1ll1l_opy_ (u"ࠨࡲ࡯ࡹ࡬࡯࡮࠯ࡸ࡬ࡨࡪࡵ࠮ࡦࡥࡪࡸࡻ࠭࠙")):
+	xbmcgui.Dialog().ok(l1ll1l_opy_ (u"ࠩ࡞ࡆࡢࡡࡃࡐࡎࡒࡖࠥࡲࡩ࡮ࡧࡪࡶࡪ࡫࡮࡞ࡇࡆࡋࠥࡡ࠯ࡄࡑࡏࡓࡗࡣ࡛ࡄࡑࡏࡓࡗࠦࡧࡰ࡮ࡧࡡ࡙࡜ࠠ࡜࠱ࡆࡓࡑࡕࡒ࡞࡝࠲ࡆࡢ࠭ࠚ"),l1ll1l_opy_ (u"ࠪࡘ࡭࡫ࠠࡑࡣࡶࡷࡼࡵࡲࡥࠢ࡬ࡷࠥ࡯࡮ࡤࡱࡵࡶࡪࡩࡴࠡࡱࡵࠤࡾࡵࡵࠡࡪࡤࡺࡪࠦ࡮ࡰࡶࠣ࡫ࡴࡺࠠࡺࡱࡸࡶࠥࡶࡡࡴࡵࡺࡳࡷࡪࠠࡺࡧࡷࠤࡕࡲࡥࡢࡵࡨࠤ࡫ࡵ࡬࡭ࡱࡺࠤࡹ࡮ࡥࠡ࡫ࡱࡷࡹࡸࡵࡤࡶ࡬ࡳࡳࡹࠠࡪࡰࠣࡸ࡭࡫ࠠࡴࡧࡷࡸ࡮ࡴࡧࡴࠢࡺ࡭ࡳࡪ࡯ࡸࠢࡷࡳࠥ࡭ࡡࡪࡰࠣࡥࡨࡩࡥࡴࡵࠣࡸࡴࠦࡴࡩ࡫ࡶࠤ࡬ࡸࡥࡢࡶࠣࡪࡷ࡫ࡥࠡࡣࡧࡨࡴࡴ࠮ࠨࠛ"))
+	l1111l_opy_(l1ll1l_opy_ (u"ࠫࡆࡪࡤࡰࡰ࠱ࡓࡵ࡫࡮ࡔࡧࡷࡸ࡮ࡴࡧࡴࠪࠨࡷ࠮࠭ࠜ") % id)
 def l1llll_opy_():
         l1111_opy_=[]
         l1l11_opy_=sys.argv[2]
         if len(l1l11_opy_)>=2:
                 params=sys.argv[2]
-                l1llll1_opy_=params.replace(l1ll1l_opy_ (u"ࠨࡁࠪࠠ"),l1ll1l_opy_ (u"ࠩࠪࠡ"))
-                if (params[len(params)-1]==l1ll1l_opy_ (u"ࠪ࠳ࠬࠢ")):
+                l1llll1_opy_=params.replace(l1ll1l_opy_ (u"ࠬࡅࠧࠝ"),l1ll1l_opy_ (u"࠭ࠧࠞ"))
+                if (params[len(params)-1]==l1ll1l_opy_ (u"ࠧ࠰ࠩࠟ")):
                         params=params[0:len(params)-2]
-                l1l_opy_=l1llll1_opy_.split(l1ll1l_opy_ (u"ࠫࠫ࠭ࠣ"))
+                l1l_opy_=l1llll1_opy_.split(l1ll1l_opy_ (u"ࠨࠨࠪࠠ"))
                 l1111_opy_={}
                 for i in range(len(l1l_opy_)):
                         l11_opy_={}
-                        l11_opy_=l1l_opy_[i].split(l1ll1l_opy_ (u"ࠬࡃࠧࠤ"))
+                        l11_opy_=l1l_opy_[i].split(l1ll1l_opy_ (u"ࠩࡀࠫࠡ"))
                         if (len(l11_opy_))==2:
                                 l1111_opy_[l11_opy_[0]]=l11_opy_[1]
         return l1111_opy_
 def l11l11_opy_(name, url, mode, l111l_opy_, l11l1_opy_):
-	u = sys.argv[0] + l1ll1l_opy_ (u"ࠨ࠿ࡶࡴ࡯ࡁࠧࠥ") + urllib.quote_plus(url) + l1ll1l_opy_ (u"ࠢࠧ࡯ࡲࡨࡪࡃࠢࠦ") + str(mode) + l1ll1l_opy_ (u"ࠣࠨࡱࡥࡲ࡫࠽ࠣࠧ") + urllib.quote_plus(name) + l1ll1l_opy_ (u"ࠤࠩ࡭ࡨࡵ࡮ࡪ࡯ࡤ࡫ࡪࡃࠢࠨ") + urllib.quote_plus(l111l_opy_)
+	u = sys.argv[0] + l1ll1l_opy_ (u"ࠥࡃࡺࡸ࡬࠾ࠤࠢ") + urllib.quote_plus(url) + l1ll1l_opy_ (u"ࠦࠫࡳ࡯ࡥࡧࡀࠦࠣ") + str(mode) + l1ll1l_opy_ (u"ࠧࠬ࡮ࡢ࡯ࡨࡁࠧࠤ") + urllib.quote_plus(name) + l1ll1l_opy_ (u"ࠨࠦࡪࡥࡲࡲ࡮ࡳࡡࡨࡧࡀࠦࠥ") + urllib.quote_plus(l111l_opy_)
 	ok = True
-	liz = xbmcgui.ListItem(name, iconImage = l1ll1l_opy_ (u"ࠥࡈࡪ࡬ࡡࡶ࡮ࡷࡊࡴࡲࡤࡦࡴ࠱ࡴࡳ࡭ࠢࠩ"), thumbnailImage = l111l_opy_)
-	liz.setInfo( type = l1ll1l_opy_ (u"࡛ࠦ࡯ࡤࡦࡱࠥࠪ"), infoLabels = { l1ll1l_opy_ (u"࡚ࠧࡩࡵ࡮ࡨࠦࠫ"): name } )
-	liz.setProperty(l1ll1l_opy_ (u"࠭ࡦࡢࡰࡤࡶࡹࡥࡩ࡮ࡣࡪࡩࠬࠬ"), l11l1_opy_)
-	if (l1ll1l_opy_ (u"ࠧࡺࡱࡸࡸࡺࡨࡥ࠯ࡥࡲࡱ࠴ࡻࡳࡦࡴ࠲ࠫ࠭") in url) or (l1ll1l_opy_ (u"ࠨࡻࡲࡹࡹࡻࡢࡦ࠰ࡦࡳࡲ࠵ࡣࡩࡣࡱࡲࡪࡲ࠯ࠨ࠮") in url) or (l1ll1l_opy_ (u"ࠩࡼࡳࡺࡺࡵࡣࡧ࠲ࡹࡸ࡫ࡲ࠰ࠩ࠯") in url) or (l1ll1l_opy_ (u"ࠪࡽࡴࡻࡴࡶࡤࡨ࠳ࡨ࡮ࡡ࡯ࡰࡨࡰ࠴࠭࠰") in url):
-		u = l1ll1l_opy_ (u"ࠫࡵࡲࡵࡨ࡫ࡱ࠾࠴࠵ࡰ࡭ࡷࡪ࡭ࡳ࠴ࡶࡪࡦࡨࡳ࠳ࡿ࡯ࡶࡶࡸࡦࡪ࠵ࠥࡴ࠱ࠨࡷ࠴࠭࠱") % (url.split( l1ll1l_opy_ (u"ࠬ࠵ࠧ࠲") )[-2], url.split( l1ll1l_opy_ (u"࠭࠯ࠨ࠳") )[-1])
+	liz = xbmcgui.ListItem(name, iconImage = l1ll1l_opy_ (u"ࠢࡅࡧࡩࡥࡺࡲࡴࡇࡱ࡯ࡨࡪࡸ࠮ࡱࡰࡪࠦࠦ"), thumbnailImage = l111l_opy_)
+	liz.setInfo( type = l1ll1l_opy_ (u"ࠣࡘ࡬ࡨࡪࡵࠢࠧ"), infoLabels = { l1ll1l_opy_ (u"ࠤࡗ࡭ࡹࡲࡥࠣࠨ"): name } )
+	liz.setProperty(l1ll1l_opy_ (u"ࠪࡪࡦࡴࡡࡳࡶࡢ࡭ࡲࡧࡧࡦࠩࠩ"), l11l1_opy_)
+	if (l1ll1l_opy_ (u"ࠫࡾࡵࡵࡵࡷࡥࡩ࠳ࡩ࡯࡮࠱ࡸࡷࡪࡸ࠯ࠨࠪ") in url) or (l1ll1l_opy_ (u"ࠬࡿ࡯ࡶࡶࡸࡦࡪ࠴ࡣࡰ࡯࠲ࡧ࡭ࡧ࡮࡯ࡧ࡯࠳ࠬࠫ") in url) or (l1ll1l_opy_ (u"࠭ࡹࡰࡷࡷࡹࡧ࡫࠯ࡶࡵࡨࡶ࠴࠭ࠬ") in url) or (l1ll1l_opy_ (u"ࠧࡺࡱࡸࡸࡺࡨࡥ࠰ࡥ࡫ࡥࡳࡴࡥ࡭࠱ࠪ࠭") in url):
+		u = l1ll1l_opy_ (u"ࠨࡲ࡯ࡹ࡬࡯࡮࠻࠱࠲ࡴࡱࡻࡧࡪࡰ࠱ࡺ࡮ࡪࡥࡰ࠰ࡼࡳࡺࡺࡵࡣࡧ࠲ࠩࡸ࠵ࠥࡴ࠱ࠪ࠮") % (url.split( l1ll1l_opy_ (u"ࠩ࠲ࠫ࠯") )[-2], url.split( l1ll1l_opy_ (u"ࠪ࠳ࠬ࠰") )[-1])
 		ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz, isFolder = True)
 		return ok
 	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz, isFolder = True)
 	return ok
 def l1ll1l1_opy_(name, url, mode, l111l_opy_, l11l1_opy_):
-	u = sys.argv[0] + l1ll1l_opy_ (u"ࠢࡀࡷࡵࡰࡂࠨ࠴") + urllib.quote_plus(url) + l1ll1l_opy_ (u"ࠣࠨࡰࡳࡩ࡫࠽ࠣ࠵") + str(mode) + l1ll1l_opy_ (u"ࠤࠩࡲࡦࡳࡥ࠾ࠤ࠶") + urllib.quote_plus(name) + l1ll1l_opy_ (u"ࠥࠪ࡮ࡩ࡯࡯࡫ࡰࡥ࡬࡫࠽ࠣ࠷") + urllib.quote_plus(l111l_opy_)
-	liz = xbmcgui.ListItem(name, iconImage = l1ll1l_opy_ (u"ࠦࡉ࡫ࡦࡢࡷ࡯ࡸ࡛࡯ࡤࡦࡱ࠱ࡴࡳ࡭ࠢ࠸"), thumbnailImage = l111l_opy_)
-	liz.setInfo( type = l1ll1l_opy_ (u"ࠧ࡜ࡩࡥࡧࡲࠦ࠹"), infoLabels = { l1ll1l_opy_ (u"ࠨࡔࡪࡶ࡯ࡩࠧ࠺"): name } )
-	liz.setProperty(l1ll1l_opy_ (u"ࠧࡧࡣࡱࡥࡷࡺ࡟ࡪ࡯ࡤ࡫ࡪ࠭࠻"), l11l1_opy_)
-	liz.setProperty(l1ll1l_opy_ (u"ࠨࡋࡶࡔࡱࡧࡹࡢࡤ࡯ࡩࠬ࠼"), l1ll1l_opy_ (u"ࠩࡷࡶࡺ࡫ࠧ࠽"))
+	u = sys.argv[0] + l1ll1l_opy_ (u"ࠦࡄࡻࡲ࡭࠿ࠥ࠱") + urllib.quote_plus(url) + l1ll1l_opy_ (u"ࠧࠬ࡭ࡰࡦࡨࡁࠧ࠲") + str(mode) + l1ll1l_opy_ (u"ࠨࠦ࡯ࡣࡰࡩࡂࠨ࠳") + urllib.quote_plus(name) + l1ll1l_opy_ (u"ࠢࠧ࡫ࡦࡳࡳ࡯࡭ࡢࡩࡨࡁࠧ࠴") + urllib.quote_plus(l111l_opy_)
+	liz = xbmcgui.ListItem(name, iconImage = l1ll1l_opy_ (u"ࠣࡆࡨࡪࡦࡻ࡬ࡵࡘ࡬ࡨࡪࡵ࠮ࡱࡰࡪࠦ࠵"), thumbnailImage = l111l_opy_)
+	liz.setInfo( type = l1ll1l_opy_ (u"ࠤ࡙࡭ࡩ࡫࡯ࠣ࠶"), infoLabels = { l1ll1l_opy_ (u"ࠥࡘ࡮ࡺ࡬ࡦࠤ࠷"): name } )
+	liz.setProperty(l1ll1l_opy_ (u"ࠫ࡫ࡧ࡮ࡢࡴࡷࡣ࡮ࡳࡡࡨࡧࠪ࠸"), l11l1_opy_)
+	liz.setProperty(l1ll1l_opy_ (u"ࠬࡏࡳࡑ࡮ࡤࡽࡦࡨ࡬ࡦࠩ࠹"), l1ll1l_opy_ (u"࠭ࡴࡳࡷࡨࠫ࠺"))
 	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz)
 def l111ll_opy_(l111l_opy_, l11l1_opy_):
-	u = sys.argv[0] + l1ll1l_opy_ (u"ࠥࠪ࡮ࡩ࡯࡯࡫ࡰࡥ࡬࡫࠽ࠣ࠾") + urllib.quote_plus(l111l_opy_)
-	liz = xbmcgui.ListItem(iconImage = l1ll1l_opy_ (u"ࠦࡉ࡫ࡦࡢࡷ࡯ࡸ࡛࡯ࡤࡦࡱ࠱ࡴࡳ࡭ࠢ࠿"), thumbnailImage = l111l_opy_)
-	liz.setProperty(l1ll1l_opy_ (u"ࠬ࡬ࡡ࡯ࡣࡵࡸࡤ࡯࡭ࡢࡩࡨࠫࡀ"), l11l1_opy_)
-	liz.setProperty(l1ll1l_opy_ (u"࠭ࡉࡴࡒ࡯ࡥࡾࡧࡢ࡭ࡧࠪࡁ"), l1ll1l_opy_ (u"ࠧࡧࡣ࡯ࡷࡪ࠭ࡂ"))
+	u = sys.argv[0] + l1ll1l_opy_ (u"ࠢࠧ࡫ࡦࡳࡳ࡯࡭ࡢࡩࡨࡁࠧ࠻") + urllib.quote_plus(l111l_opy_)
+	liz = xbmcgui.ListItem(iconImage = l1ll1l_opy_ (u"ࠣࡆࡨࡪࡦࡻ࡬ࡵࡘ࡬ࡨࡪࡵ࠮ࡱࡰࡪࠦ࠼"), thumbnailImage = l111l_opy_)
+	liz.setProperty(l1ll1l_opy_ (u"ࠩࡩࡥࡳࡧࡲࡵࡡ࡬ࡱࡦ࡭ࡥࠨ࠽"), l11l1_opy_)
+	liz.setProperty(l1ll1l_opy_ (u"ࠪࡍࡸࡖ࡬ࡢࡻࡤࡦࡱ࡫ࠧ࠾"), l1ll1l_opy_ (u"ࠫ࡫ࡧ࡬ࡴࡧࠪ࠿"))
 	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz)
 def l1lllll_opy_(name, l111l_opy_, l11l1_opy_):
-	u = sys.argv[0] + l1ll1l_opy_ (u"ࠣࠨࡱࡥࡲ࡫࠽ࠣࡃ") + urllib.quote_plus(name) + l1ll1l_opy_ (u"ࠤࠩ࡭ࡨࡵ࡮ࡪ࡯ࡤ࡫ࡪࡃࠢࡄ") + urllib.quote_plus(l111l_opy_)
-	liz = xbmcgui.ListItem(name, iconImage = l1ll1l_opy_ (u"ࠥࡈࡪ࡬ࡡࡶ࡮ࡷ࡚࡮ࡪࡥࡰ࠰ࡳࡲ࡬ࠨࡅ"), thumbnailImage = l111l_opy_)
-	liz.setInfo( type = l1ll1l_opy_ (u"࡛ࠦ࡯ࡤࡦࡱࠥࡆ"), infoLabels = { l1ll1l_opy_ (u"࡚ࠧࡩࡵ࡮ࡨࠦࡇ"): name } )
-	liz.setProperty(l1ll1l_opy_ (u"࠭ࡦࡢࡰࡤࡶࡹࡥࡩ࡮ࡣࡪࡩࠬࡈ"), l11l1_opy_)
-	liz.setProperty(l1ll1l_opy_ (u"ࠧࡊࡵࡓࡰࡦࡿࡡࡣ࡮ࡨࠫࡉ"), l1ll1l_opy_ (u"ࠨࡨࡤࡰࡸ࡫ࠧࡊ"))
+	u = sys.argv[0] + l1ll1l_opy_ (u"ࠧࠬ࡮ࡢ࡯ࡨࡁࠧࡀ") + urllib.quote_plus(name) + l1ll1l_opy_ (u"ࠨࠦࡪࡥࡲࡲ࡮ࡳࡡࡨࡧࡀࠦࡁ") + urllib.quote_plus(l111l_opy_)
+	liz = xbmcgui.ListItem(name, iconImage = l1ll1l_opy_ (u"ࠢࡅࡧࡩࡥࡺࡲࡴࡗ࡫ࡧࡩࡴ࠴ࡰ࡯ࡩࠥࡂ"), thumbnailImage = l111l_opy_)
+	liz.setInfo( type = l1ll1l_opy_ (u"ࠣࡘ࡬ࡨࡪࡵࠢࡃ"), infoLabels = { l1ll1l_opy_ (u"ࠤࡗ࡭ࡹࡲࡥࠣࡄ"): name } )
+	liz.setProperty(l1ll1l_opy_ (u"ࠪࡪࡦࡴࡡࡳࡶࡢ࡭ࡲࡧࡧࡦࠩࡅ"), l11l1_opy_)
+	liz.setProperty(l1ll1l_opy_ (u"ࠫࡎࡹࡐ࡭ࡣࡼࡥࡧࡲࡥࠨࡆ"), l1ll1l_opy_ (u"ࠬ࡬ࡡ࡭ࡵࡨࠫࡇ"))
 	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz)
 params=l1llll_opy_()
 url=None
@@ -124,30 +121,30 @@ mode=None
 description=None
 query=None
 try:
-        url=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠤࡸࡶࡱࠨࡋ")])
+        url=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠨࡵࡳ࡮ࠥࡈ")])
 except:
         pass
 try:
-        name=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠥࡲࡦࡳࡥࠣࡌ")])
+        name=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠢ࡯ࡣࡰࡩࠧࡉ")])
 except:
         pass
 try:
-       query=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠦࡶࡻࡥࡳࡻࠥࡍ")])
+       query=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠣࡳࡸࡩࡷࡿࠢࡊ")])
 except:
         pass
 try:
-        l111l_opy_=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠧ࡯ࡣࡰࡰ࡬ࡱࡦ࡭ࡥࠣࡎ")])
+        l111l_opy_=urllib.unquote_plus(params[l1ll1l_opy_ (u"ࠤ࡬ࡧࡴࡴࡩ࡮ࡣࡪࡩࠧࡋ")])
 except:
         pass
 try:
-        mode=int(params[l1ll1l_opy_ (u"ࠨ࡭ࡰࡦࡨࠦࡏ")])
+        mode=int(params[l1ll1l_opy_ (u"ࠥࡱࡴࡪࡥࠣࡌ")])
 except:
         pass
-print l1ll1l_opy_ (u"ࠢࡎࡱࡧࡩ࠿ࠦࠢࡐ")+str(mode)
-print l1ll1l_opy_ (u"ࠣࡗࡕࡐ࠿ࠦࠢࡑ")+str(url)
-print l1ll1l_opy_ (u"ࠤࡑࡥࡲ࡫࠺ࠡࠤࡒ")+str(name)
+print l1ll1l_opy_ (u"ࠦࡒࡵࡤࡦ࠼ࠣࠦࡍ")+str(mode)
+print l1ll1l_opy_ (u"࡛ࠧࡒࡍ࠼ࠣࠦࡎ")+str(url)
+print l1ll1l_opy_ (u"ࠨࡎࡢ࡯ࡨ࠾ࠥࠨࡏ")+str(name)
 if mode==None or url==None or len(url)<1:
-        print l1ll1l_opy_ (u"ࠥࠦࡓ")
+        print l1ll1l_opy_ (u"ࠢࠣࡐ")
         main()
 elif mode == 1:
 	l1lll11_opy_(url)
