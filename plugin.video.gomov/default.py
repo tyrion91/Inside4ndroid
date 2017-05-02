@@ -7,12 +7,15 @@ from resources.lib.common import Addon
 from resources.lib.i4a_tools import i4a
 import re,sys,urllib
 
-# THIS ADDON IS A 123MOVIES REBUILD BY INSIDE4NDROID 
+# THIS ADDON IS A 123MOVIES REBUILD AND NOW RUNS FROM THE GOMOVIES WEBSITE BY INSIDE4NDROID 
+
 # REMOVED TV SHOWS AND FIXED HOW THE MOVIES LOAD
 
 #MUCKY DUCK IS THE ORIGINAL CODE CREATOR I JUST MODIFIED IT TO WORK SO MASSIVE THANKS AND CREDIT TO HIM.
 
 #THE REASON I MADE THIS ADDON WORK AND IMPLEMENTED THE MODIFIED CODE BY ME WAS BECAUSE MUCKY DUCK HAS VANISHED AND I PERSONALLY LOVED 123MOVIES 
+
+#INSIDE4NDROID 07:10AM 1/05/2017
 
 addon_id = xbmcaddon.Addon().getAddonInfo('id')
 addon = Addon(addon_id, sys.argv)
@@ -95,7 +98,7 @@ def YEAR(url, content):
 	addon.end_of_directory()
 
 def SUPPORT():
-	xbmcgui.Dialog().ok('[B][COLOR limegreen]ECG [/COLOR][COLOR gold]MOVIES [/COLOR][/B]','Thanks for using ECG MOVIES. If you require support or want to report non working films or errors please contact me via the following ways >>> \nEMAIL: inside4ndroid.techsup@gmail.com \nTWITTER: @Inside_4ndroid \nThank You')
+	xbmcgui.Dialog().ok('[B][COLOR blue]GO [/COLOR][COLOR gold]MOVIES [/COLOR][/B]','Thanks for using GO MOVIES. If you require support or want to report non working films or errors please contact me via the following ways >>> \nEMAIL: inside4ndroid.techsup@gmail.com \nTWITTER: @Inside_4ndroid \nThank You')
 	return
 
 
