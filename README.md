@@ -5,7 +5,7 @@ This is the development repository for my work.
 All the addons and code here are all 3rd party and have nothing to do with kodi
 I am in no way affiliated with or part of the kodi development team.
 
-The Repository source for kodi file manager is http://i4arepo.comxa.com/irepo/
+The Repository source for kodi file manager is http://i4arepo.web44.net/irepo/
 
 For more information on anything you see here you can get in touch via the 
 methods set out below...
@@ -19,4 +19,4 @@ methods set out below...
 [youtube]: https://www.youtube.com/channel/UC4IXmElWEH73b9X9unwOeOg
 [twitter]: https://twitter.com/Inside_4ndroid
 [website]: http://i4pro.co.uk
-[repo]: http://i4arepo.comxa.com/irepo/
+[repo]: http://i4arepo.web44.net/irepo/
