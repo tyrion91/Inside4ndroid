@@ -259,7 +259,7 @@ def SPORTS_ALL():
 	content = online_m3u
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
-		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 400, icon, fanart, '')
 	opener = urllib.FancyURLopener({})
 	response = opener.open(online_basics)
 	online_m3u = response.read()
@@ -268,7 +268,7 @@ def SPORTS_ALL():
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
-		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 400, icon, fanart, '')
 		
 def SPORTS_OTHER():
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]SPORTS ANGEL - OTHER SPORTS [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'welcome.png', fanart)
@@ -316,7 +316,7 @@ def SPORTS_OTHER():
 	content = online_m3u
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
-		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+		add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -394,7 +394,7 @@ def SPORTS_TSN():
 	for thumb, name, url in match:
 		if 'TSN' in name:
 			url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
-			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -446,7 +446,7 @@ def SPORTS_SKY():
 	for thumb, name, url in match:
 		if 'Sky Sports' in name:
 			url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
-			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
@@ -478,7 +478,7 @@ def SPORTS_BT():
 	for thumb, name, url in match:
 		if 'BT Sport' in name:
 			url=url.replace('ipsatv',first+'iptv').replace('9090','8127')
-			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I] [COLOR red][B]*F4M Tester Required*[/B][/COLOR]' %name, url, 400, icon, fanart, '')
+			add_link('[I][B][COLOR FF42F4E2] %s [/COLOR][/B][/I]' %name, url, 400, icon, fanart, '')
 	add_link_dummy(icon, fanart)
 	add_link_info('[B][COLOR gold]**[/COLOR][COLOR FFFF051E]SUBMIT A COMMENT OR SUGGESTION [/COLOR][COLOR gold]**[/COLOR][/B]',mediapath+'error.png', fanart)
 	add_link_info('[B][COLOR gold]** [/COLOR][COLOR FFF442BC]Twitter: @Inside_4ndroid [/COLOR][COLOR gold]**[/COLOR][/B]', mediapath+'twitter.png', fanart)
